@@ -10,7 +10,7 @@ export const revalidate = 60
 export async function generateStaticParams() {
   const projects = await getProjects()
   
-  return projects.map((project) => ({
+  return projects.map((project: Project) => ({
     slug: project.slug,
   }))
 }
