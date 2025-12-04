@@ -11,6 +11,9 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
   const author = project.metadata.author
   const categories = project.metadata.categories || []
 
+  // Use repository image if available, fallback to screenshot
+  const imageUrl = screenshot?.imgix_url || screenshot?.url
+
   return (
     <Link 
       href={`/projects/${project.slug}`}
@@ -20,9 +23,9 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
     >
       {/* Screenshot */}
       <div className="relative aspect-video overflow-hidden bg-gray-100">
-        {screenshot && (
+        {imageUrl && (
           <img
-            src={`${screenshot.imgix_url}?w=800&h=450&fit=crop&auto=format,compress`}
+            src={`${imageUrl}?w=800&h=450&fit=crop&auto=format,compress`}
             alt={project.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             width={400}
