@@ -10,6 +10,9 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
   const author = project.metadata.author
   const categories = project.metadata.categories || []
 
+  // Use repository image if available, fallback to screenshot
+  const imageUrl = screenshot?.imgix_url || screenshot?.url
+
   return (
     <article className="max-w-5xl mx-auto">
       {/* Header */}
@@ -66,10 +69,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
       </div>
 
       {/* Screenshot */}
-      {screenshot && (
+      {imageUrl && (
         <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl mb-8">
           <img
-            src={`${screenshot.imgix_url}?w=1600&h=900&fit=crop&auto=format,compress`}
+            src={`${imageUrl}?w=1600&h=900&fit=crop&auto=format,compress`}
             alt={project.title}
             className="w-full h-full object-cover"
             width={800}
